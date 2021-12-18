@@ -61,3 +61,7 @@ target/
 
 # Notebook Checkpoints
 .ipynb_checkpoints/
+datasets/
+
+archive.zip
+tampere17_grayscale.zip

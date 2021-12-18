@@ -39,7 +39,7 @@ def PSNR(x_real,x_hat):
     Peak signal-to-noise ratio (PSNR)
     '''
     # get RMSE
-    mse = MSE(image_a,image_b)
+    mse = MSE(x_real,x_hat)
     # maximum possible intensity for torch.uint8 dtype
     MAX_I = 255
     # calculate PSNR by definition

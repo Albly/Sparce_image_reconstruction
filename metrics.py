@@ -17,11 +17,8 @@ def PSNR(x_real,x_hat):
     Peak signal-to-noise ratio (PSNR)
     '''
     # get RMSE
-<<<<<<< HEAD
-    mse = torch.nn.MSELoss()
-=======
     mse = mse_loss(x_real,x_hat)
->>>>>>> 1f734a55d0818cc8ef3d84bcd536eae4954d0682
+
     # maximum possible intensity for torch.uint8 dtype
     MAX_I = 255
     # calculate PSNR by definition

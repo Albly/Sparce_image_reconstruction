@@ -32,3 +32,16 @@ def NMSE(x_real,x_hat):
     '''
     return MSE(x_real, x_hat) / MSE(x_real, torch.zeros_like(x_real))
 
+
+
+def PSNR(x_real,x_hat):
+    '''
+    Peak signal-to-noise ratio (PSNR)
+    '''
+    # get RMSE
+    mse = MSE(image_a,image_b)
+    # maximum possible intensity for torch.uint8 dtype
+    MAX_I = 255
+    # calculate PSNR by definition
+    PSNR = 10*torch.log10(MAX_I**2 / mse)
+    return PSNR

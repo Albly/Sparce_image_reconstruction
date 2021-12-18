@@ -4,6 +4,10 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 
 class CustomDataset(Dataset):
+    """
+    Input images: grayscale 8bit (0-255)
+    Output images dtype: float32
+    """
     def __init__(self,path=None):
         # dataset path
         self.imgs_path = path
@@ -20,6 +24,6 @@ class CustomDataset(Dataset):
 #             interpolation_type = cv2.INTER_LINEAR
 #             img = cv2.resize(img, self.img_dim,interpolation_type)
             
-        img_tensor = torch.from_numpy(img)
+        img_tensor = torch.tensor(img,dtype=torch.float)
         class_id = idx
         return img_tensor, class_id

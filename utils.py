@@ -23,7 +23,7 @@ def get_noise(signal, SNR_dB):
     mu = torch.zeros(1)                         # Mean of AWGN 
     sigma = torch.sqrt(D_noise/2)               # Deviation of AWGN
 
-    noise = torch.normal(mean = mu, std = sigma, size = signal.shape) # Noise vector
+    shape = signal.shape                        # get shape of image
+    noise = torch.normal(mean = mu.repeat(shape), std = sigma.repeat(shape)) # Noise vector
     return noise 
 
-    

@@ -2,12 +2,14 @@
 
 ## General Description
 
+Sparse Linear Inverse Problem is the estimation of an unknown signal from indirect, noisy, underdetermined measurements by exploiting the knowledge that the signal has many zeros. We compare various iterative algorithmic approaches to this problem and explore how they benefit from loop-unrolling and deep learning.
+
 In this project we've implemented deep neural networks for the sparse linear inverse problem for images in the wavelet domain, where the images are quite sparse. We are to reconstruct images distorted by white gaussian noise.
-Data: we are going to use TAMPERE17 and USC SIPI datasets (512х512 grayscale images).
+
 Applications: image compression, image quality enhancement (noise removal).
 NLA methods: compressive sensing, sparse matrices processing and its storage, singular value decomposition, orthogonal transformations (DFT, DWT, DCT). 
 
-## Datasets
+## Data
 
 1) TAMPERE17 noise-free image database.
 https://webpages.tuni.fi/imaging/tampere17/
@@ -19,12 +21,15 @@ https://www.kaggle.com/luffyluffyluffy/the-uscsipi-image-database
 
 Only images with size 512x512 were left.
 
+To reproduce the results and work with datasets you should download 2 datasets (archives) and then run all cells in datasets notebook.
+
 ## Files and folders description
 
+Dataset.ipynb
 
+Metrics.ipynb
 
-
-
+main.ipynb 
 
 
 

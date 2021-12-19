@@ -21,12 +21,15 @@ https://www.kaggle.com/luffyluffyluffy/the-uscsipi-image-database
 
 Only images with size 512x512 were left.
 
+To reproduce the results and work with datasets you should download 2 datasets (archives) and then run all cells in datasets notebook.
+
 ## Files and folders description
 
+Dataset.ipynb
 
+Metrics.ipynb
 
-
-
+main.ipynb 
 
 
 

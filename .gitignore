@@ -65,3 +65,5 @@ datasets/
 
 archive.zip
 tampere17_grayscale.zip
+
+__pycache__/

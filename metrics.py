@@ -5,12 +5,25 @@ from torch.nn.functional import mse_loss
 import numpy as np
 import cv2
 
+def MSE(x_real, x_hat):
+    '''Mean squared error generalized for complex values'''
+
+    assert x_real.shape == x_hat.shape, 'Sizes of both values must be the same'
+    
+    if torch.is_complex(x_real):
+        mse = torch.sum(torch.abs(x_real-x_hat)**2)/torch.numel(x_real)
+
+    else:
+        mse = mse_loss(x_real, x_hat)
+
+    return mse
+
 
 def NMSE(x_real,x_hat):
     '''
     Normalized mean squared error in matrix form.
     '''
-    nmse = mse_loss(x_real, x_hat) / mse_loss(x_real, torch.zeros_like(x_real))
+    nmse = MSE(x_real, x_hat) / MSE(x_real, torch.zeros(x_real.shape))
     return nmse.item()
 
 

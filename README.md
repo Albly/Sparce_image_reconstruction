@@ -37,7 +37,7 @@ To reproduce the results and work with datasets you should download 2 datasets (
 
 [`tests.ipynb`](https://github.com/Albly/Sparce_image_reconstruction/blob/master/notebooks/tests.ipynb)
 
-[`Presentation_demo.ipynb`](https://github.com/Albly/Sparce_image_reconstruction/blob/master/notebooks/Presentation_demo.ipynb)
+[`Presentation_demo.ipynb`](https://github.com/Albly/Sparce_image_reconstruction/blob/master/notebooks/Presentation_demo.ipynb) - consists data for demonstration.
 
 
 

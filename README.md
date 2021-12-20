@@ -27,7 +27,7 @@ To reproduce the results and work with datasets you should download 2 datasets (
 
 [`Dataset.ipynb`](https://github.com/Albly/Sparce_image_reconstruction/blob/master/notebooks/Dataset.ipynb) - consists the code to upload and process with data.
 
-[`Metrics.ipynb`](https://github.com/Albly/Sparce_image_reconstruction/blob/master/notebooks/Metrics.ipynb) - describes the metrics we used to assess the quality of the recovered images.
+[`Metrics.ipynb`](https://github.com/Albly/Sparce_image_reconstruction/blob/master/notebooks/Metrics.ipynb) - describes the metrics we used to assess the quality of the denoised images.
 
 1) Mean square error (MSE)
 2) Normalized mean square error (NMSE)

@@ -18,9 +18,10 @@ def ista_iteration(y, A, x_hat, lambd):
     Baseline: https://arxiv.org/abs/1607.05966
     '''
 
-    v = y - A @ x_hat                           # residual measurement error
-    r = x_hat + A.T @ v                         # input of thresholding function
-    x_hat = act.threshold(r, lambd, 'soft')     # apply thresholding
+    v = y - A @ x_hat                       # residual measurement error                        
+    r = x_hat + torch.conj(A).T @ v         # input of thresholding function
+    x_hat = act.threshold(r, lambd, 'soft') # apply thresholding
+
     return x_hat                    
 
 
@@ -35,35 +36,37 @@ def ista_denoise(y,A,x, lambd, iterations):
 
     Baseline: https://arxiv.org/abs/1607.05966
     '''
-    x_hat = torch.zeros(A.shape[1], 1)          # init x_hat as zero vector
-    metric = []                                 # NMSE list
 
-    for i in range(iterations):                 
-        x_hat = ista_iteration(y,A, x_hat ,lambd) # do ista iterations
-        metric.append(NMSE(x,x_hat))              # compare x_hat with x_real 
+    x_hat = torch.zeros(A.shape[1], 1, dtype = x.dtype) # init estimated x as zero vec
+    metric = []                                         # NMSE list
+
+    for i in range(iterations):                         
+        x_hat = ista_iteration(y,A, x_hat ,lambd)       # do ista iterations
+        metric.append(NMSE(x, x_hat))                   # calculate nmse
 
     return x_hat, torch.tensor(metric)
+
 
 #=========================================================================
 
 def fista_iteration(y, A, x_hat, x_hat_prev, lambd, t):
     '''
     Iteration of Fast Iterative Soft-Thresholding algorithm (FISTA).
-    @y -      noisy vector 
-    @A -      measurements matrix
-    @x_hat -  current estimation of original vector x
-    @x_hat -  x_hat estimation from previous iteration
-    @lambd -  threshold for activation
-    @t -      number of current iteration
+    @y -           noisy vector 
+    @A -           measurements matrix
+    @x_hat -       current estimation of original vector x
+    @x_hat_prev -  x_hat estimation from previous iteration
+    @lambd -       threshold for activation
+    @t -           number of current iteration
 
     Baseline: https://arxiv.org/abs/1607.05966
     '''
 
-    v = y - A@x_hat                             # residual error
-    r_add = (t-2)/(t+1) * (x_hat - x_hat_prev)  # additional term, that makes convergence faster
-    r = x_hat + A.T @ v + r_add                 # input of activation
-    x_hat_prev = x_hat                          
-    x_hat = act.threshold(r, lambd, 'soft')     # activation
+    v = y - A @ x_hat                               # residual error
+    r_add = (t-2)/(t+1) * (x_hat - x_hat_prev)      # additional term, that makes convergence faster
+    r = x_hat + torch.conj(A).T @ v + r_add         # input of activation
+    x_hat_prev = x_hat                              
+    x_hat = act.threshold(r, lambd, 'soft')         # activation     
 
     return x_hat, x_hat_prev
 
@@ -78,15 +81,17 @@ def fista_denoise(y,A,x, lambd, iterations):
 
     Baseline: https://arxiv.org/abs/1607.05966
     '''
-    x_hat = torch.zeros(A.shape[1], 1)          # init current estimation of x_hat as zeros
-    x_hat_prev = torch.zeros(A.shape[1], 1)     # the same with previous estimation 
+
+    x_hat = torch.zeros(A.shape[1], 1, dtype = x.dtype)         # init current estimation of x_hat as zeros 
+    x_hat_prev = torch.zeros(A.shape[1], 1, dtype = x.dtype)    # the same with previous estimation
     metric = []
 
     for t in range(1, iterations):              
-        x_hat, x_hat_prev = fista_iteration(y,A, x_hat, x_hat_prev, lambd, t) # do iterations  
-        metric.append(NMSE(x,x_hat))      # calculate NMSE
+        x_hat, x_hat_prev = fista_iteration(y,A, x_hat, x_hat_prev, lambd, t) # do iterations 
+        metric.append(NMSE(x,x_hat))        # calculate NMSE
+
     return x_hat, torch.tensor(metric)
-    
+
 #=========================================================================
 
 def amp_iteration(y,A, x_hat, alpha, v_prev):
@@ -103,11 +108,12 @@ def amp_iteration(y,A, x_hat, alpha, v_prev):
 
     v = y - A @x_hat + b*v_prev                             # residual error
     lambd = alpha/math.sqrt(A.shape[0]) * torch.norm(v,2)   # calculate threshold
-    r = x_hat + A.T @ v                                     # input for activation
-    x_hat = act.threshold(r,lambd, 'soft')                  # activation
+    r = x_hat + torch.conj(A).T @ v                         # input for activation      
+    x_hat = act.threshold(r,lambd)                          # activation               
     v_prev = v                      
 
     return x_hat, v_prev
+
 
 def amp_denoise(y,A, x , alpha, iterations):
     '''
@@ -121,12 +127,12 @@ def amp_denoise(y,A, x , alpha, iterations):
     Baseline: https://arxiv.org/abs/1607.05966
     '''
 
-    x_hat = torch.zeros(A.shape[1],1)           # initial x_hat - zero vec
-    v_prev = torch.zeros(A.shape[0],1)          # prevous x_hat - zero vec
+    x_hat = torch.zeros(A.shape[1],1, dtype= x.dtype)   #  initial x_hat - zero vec
+    v_prev = torch.zeros(A.shape[0],1, dtype= x.dtype)  # prevous x_hat - zero vec
     metric = []
 
     for _ in range(iterations):
-        x_hat, v_prev = amp_iteration(y,A, x_hat,alpha, v_prev )  # do amp iterations
-        metric.append(NMSE(x,x_hat))                              # calcualt metric
+        x_hat, v_prev = amp_iteration(y,A, x_hat, alpha, v_prev ) # do amp iterations
+        metric.append(NMSE(x, x_hat))                               # calcualte metric
 
     return x_hat, torch.tensor(metric)

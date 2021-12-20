@@ -1,4 +1,6 @@
 # Byte-compiled / optimized / DLL files
+wandb
+Trained_best*
 __pycache__
 __pycache__/
 *.py[cod]

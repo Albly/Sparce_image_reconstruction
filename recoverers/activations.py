@@ -36,7 +36,9 @@ def threshold(v, lambd, type = 'soft'):
     if type != 'soft': 
         raise Exception('No {} type for threshold function'.format(type))
 
-    zero = torch.zeros(v.shape)         # zero vector with same shape as input
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+    zero = torch.zeros(v.shape, device = device)         # zero vector with same shape as input
     sgn = torch.sgn(v)                  # sgn of vector. Equivalent to sign if v - real
 
     return sgn*torch.maximum(torch.abs(v) - lambd , zero) 

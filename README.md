@@ -25,9 +25,9 @@ To reproduce the results and work with datasets you should download 2 datasets (
 
 ## Files and folders description
 
-Dataset.ipynb - consists the code to upload and process with datasets.
+[`Dataset.ipynb`](https://github.com/Albly/Sparce_image_reconstruction/blob/master/notebooks/Dataset.ipynb) - consists the code to upload and process with data.
 
-Metrics.ipynb - describes the metrics we used to assess the quality of the recovered images.
+[`Metrics.ipynb`](https://github.com/Albly/Sparce_image_reconstruction/blob/master/notebooks/Metrics.ipynb) - describes the metrics we used to assess the quality of the recovered images.
 
 1) Mean square error (MSE)
 2) Normalized mean square error (NMSE)
@@ -35,9 +35,9 @@ Metrics.ipynb - describes the metrics we used to assess the quality of the recov
 4) Maximal possible intensity in the image (MAX_I)
 5) Structural similarity index measure (SSIM)
 
-tests.ipynb 
+[`tests.ipynb`](https://github.com/Albly/Sparce_image_reconstruction/blob/master/notebooks/tests.ipynb)
 
-presentation_demo.ipynb 
+[`Presentation_demo.ipynb`](https://github.com/Albly/Sparce_image_reconstruction/blob/master/notebooks/Presentation_demo.ipynb)
 
 
 

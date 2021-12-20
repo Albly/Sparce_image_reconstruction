@@ -16,20 +16,28 @@ https://webpages.tuni.fi/imaging/tampere17/
 
 300 color images 512x512 pixels without noise (variance < 1), without interpolation and without lossy compression.
 
-2) USC-SIPI dataset
+2) USC-SIPI dataset 
 https://www.kaggle.com/luffyluffyluffy/the-uscsipi-image-database
 
-Only images with size 512x512 were left.
+For this dataset we combined pictures from four folders and consider images with size 512x512 only.
 
 To reproduce the results and work with datasets you should download 2 datasets (archives) and then run all cells in datasets notebook.
 
 ## Files and folders description
 
-Dataset.ipynb
+Dataset.ipynb - consists the code to upload and process with datasets.
 
-Metrics.ipynb
+Metrics.ipynb - describes the metrics we used to assess the quality of the recovered images.
 
-main.ipynb 
+1) Mean square error (MSE)
+2) Normalized mean square error (NMSE)
+3) Peak signal-to-noise ratio (PSNR)
+4) Maximal possible intensity in the image (MAX_I)
+5) Structural similarity index measure (SSIM)
+
+tests.ipynb 
+
+presentation_demo.ipynb 
 
 
 
@@ -46,12 +54,4 @@ main.ipynb
 [5] C. A. Metzler, A. Maleki and R. G. Baraniuk, "From Denoising to Compressed Sensing," in IEEE Transactions on Information Theory, vol. 62, no. 9, pp. 5117-5144, Sept. 2016, doi: 10.1109/TIT.2016.2556683.
 
 [6] G. Nie en Y. Zhou, “ATP-Net: An Attention-based Ternary Projection Network For Compressed Sensing”, arXiv [eess.SP]. 2021.
-
-
-
-
-
-add description 
-
-add results
 

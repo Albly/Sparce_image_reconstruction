@@ -34,7 +34,7 @@ To reproduce the results and work with datasets you should download 2 datasets (
 3) Peak signal-to-noise ratio (PSNR)
 4) Structural similarity index measure (SSIM)
 
-[`tests.ipynb`](https://github.com/Albly/Sparce_image_reconstruction/blob/master/notebooks/tests.ipynb)
+[`tests.ipynb`](https://github.com/Albly/Sparce_image_reconstruction/blob/master/notebooks/tests.ipynb) - demonstration of implemented algorithms (ISTA, FISTA, AMP, LISTA).
 
 [`Presentation_demo.ipynb`](https://github.com/Albly/Sparce_image_reconstruction/blob/master/notebooks/Presentation_demo.ipynb) - consists data for demonstration.
 

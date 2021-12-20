@@ -32,8 +32,7 @@ To reproduce the results and work with datasets you should download 2 datasets (
 1) Mean square error (MSE)
 2) Normalized mean square error (NMSE)
 3) Peak signal-to-noise ratio (PSNR)
-4) Maximal possible intensity in the image (MAX_I)
-5) Structural similarity index measure (SSIM)
+4) Structural similarity index measure (SSIM)
 
 [`tests.ipynb`](https://github.com/Albly/Sparce_image_reconstruction/blob/master/notebooks/tests.ipynb)
 
